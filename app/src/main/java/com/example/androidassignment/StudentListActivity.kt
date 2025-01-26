@@ -14,8 +14,7 @@ import com.example.androidassignment.model.Student
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 interface OnItemClickListener {
-    fun onItemClick(position: Int)
-    fun onItemClick(student: Student?)
+    fun onItemClick(position: Int, student: Student?)
 }
 
 class StudentListActivity : AppCompatActivity() {
@@ -41,12 +40,8 @@ class StudentListActivity : AppCompatActivity() {
 
         adapter = StudentsRecyclerAdapter(this, students)
         adapter.listener = object : OnItemClickListener {
-            override fun onItemClick(position: Int) {
-                Log.d("OnClick event", "On click activity listener positoin $position")
-            }
-
-            override fun onItemClick(student: Student?) {
-                Log.d("OnClick event", "On student clicked, name: ${student?.name}")
+            override fun onItemClick(position: Int, student: Student?) {
+                Log.d("OnClick event", "On student clicked, name: ${student?.name}, position $position")
             }
         }
         recyclerView.adapter = adapter
