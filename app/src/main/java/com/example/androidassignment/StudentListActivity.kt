@@ -1,5 +1,7 @@
 package com.example.androidassignment
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
@@ -47,6 +49,15 @@ class StudentListActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         val addStudentButton: FloatingActionButton = findViewById(R.id.students_fab)
+        addStudentButton.setOnClickListener {
+            val intent = Intent(this, AddNewStudentActivity::class.java)
+            startActivity(intent)
+        }
+    }
 
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
     }
 }
