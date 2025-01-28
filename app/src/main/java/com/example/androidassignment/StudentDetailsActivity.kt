@@ -51,6 +51,16 @@ class StudentDetailsActivity : AppCompatActivity() {
         addressTextView.text = intent.getStringExtra("studentAddress")
         studentCheckBox.isChecked = intent.getBooleanExtra("isChecked", false)
 
+        editButton.setOnClickListener {
+            val intent = Intent(this, EditStudentActivity::class.java).apply {
+                putExtra("studentName", nameTextView.text)
+                putExtra("studentId", idTextView.text)
+                putExtra("studentPhone", phoneTextView.text)
+                putExtra("studentAddress", addressTextView.text)
+                putExtra("isChecked", studentCheckBox.isChecked)
+            }
+            editStudentLauncher.launch(intent)
+        }
 
     }
 }
