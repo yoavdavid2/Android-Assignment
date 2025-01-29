@@ -9,10 +9,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.androidassignment.OnItemClickListener
 import com.example.androidassignment.R
+import com.example.androidassignment.StudentDetailsActivity
 import com.example.androidassignment.model.Student
 
 class StudentsRecyclerAdapter(
-    private val context: Context, private val students: MutableList<Student>?
+    private val context: Context,
+    private val students: MutableList<Student>?
 ) : RecyclerView.Adapter<StudentViewHolder>() {
     var listener: OnItemClickListener? = null
 
@@ -35,16 +37,22 @@ class StudentsRecyclerAdapter(
         )
 
         holder.itemLayout.setOnClickListener {
-//            val intent = Intent(context, )
+            val intent = Intent(context, StudentDetailsActivity::class.java).apply {
+                putExtra("studentName", students?.get(position)?.name)
+                putExtra("studentId", students?.get(position)?.id)
+                putExtra("studentPhone", students?.get(position)?.phone)
+                putExtra("studentAddress", students?.get(position)?.address)
+                putExtra("isChecked", students?.get(position)?.isChecked)
+            }
+
             if (context is Activity) {
                 val options = ActivityOptions.makeCustomAnimation(
                     context,
                     android.R.anim.slide_in_left,
                     android.R.anim.slide_out_right
                 )
-//                context.startActivity(intent, options.toBundle())
+                context.startActivity(intent, options.toBundle())
             }
         }
     }
-
 }

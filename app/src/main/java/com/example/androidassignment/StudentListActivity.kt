@@ -43,7 +43,10 @@ class StudentListActivity : AppCompatActivity() {
         adapter = StudentsRecyclerAdapter(this, students)
         adapter.listener = object : OnItemClickListener {
             override fun onItemClick(position: Int, student: Student?) {
-                Log.d("OnClick event", "On student clicked, name: ${student?.name}, position $position")
+                Log.d(
+                    "OnClick event",
+                    "On student clicked, name: ${student?.name}, position $position"
+                )
             }
         }
         recyclerView.adapter = adapter

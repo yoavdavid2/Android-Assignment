@@ -61,6 +61,5 @@ class StudentDetailsActivity : AppCompatActivity() {
             }
             editStudentLauncher.launch(intent)
         }
-
     }
 }
